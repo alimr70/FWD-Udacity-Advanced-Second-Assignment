@@ -1,30 +1,23 @@
-import { AvatarOne, AvatarThree, AvatarTwo } from "./assets";
-import CreateNewQuestion from "./components/CreateNewQuestion";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Header from "./components/Header";
-import LeaderboardCard from "./components/LeaderboardCard";
-import Poll from "./components/Poll";
-import PollResult from "./components/PollResult";
-import QuestionList from "./components/QuestionList";
-import UserLogin from "./components/UserLogin";
+import { getUsers } from "./redux/actions/users";
+import { getQuestions } from "./redux/actions/questions";
+import Routes from "./routes";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getQuestions());
+  });
+
   return (
     <div className="App">
-      {/* Navbar */}
       <Header />
-
       <main>
-        <UserLogin />
-
-        <QuestionList />
-
-        <Poll />
-
-        <PollResult />
-
-        <LeaderboardCard />
-
-        <CreateNewQuestion />
+        <Routes />
       </main>
     </div>
   );

@@ -22,10 +22,19 @@ header {
   display: grid;
 }
 
+main {
+  padding: 20px 0;
+}
+
 nav {
   justify-self: center;
   width: 100%;
   max-width: 768px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .hr-div {
@@ -54,7 +63,8 @@ nav {
 
 .navbar-items>li,
 .navbar-user-logout>li,
-.navbar-user {
+.navbar-user,
+.link {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
@@ -64,7 +74,8 @@ nav {
 
 .navbar-items>li:hover,
 .navbar-user-logout>li:hover,
-.navbar-user:hover {
+.navbar-user:hover,
+.link:hover {
   background-color: #3b82f6;
 }
 

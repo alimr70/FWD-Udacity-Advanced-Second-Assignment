@@ -2,9 +2,9 @@
 
 ✅ Split page into components
 
-❌ Setup react router routes
+✅ Setup react router routes
 
-❌ Create redux store
+✅ Create redux store
 
 ❌ Create redux reducers
 
