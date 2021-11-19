@@ -1,4 +1,17 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setAuthedUser } from "../redux/actions/authedUser";
+
 const UserLogin = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+
+  const [user, setUser] = useState("");
+
+  const handleChange = (e) => {
+    setUser(e.target.value);
+  };
   return (
     <>
       {/* Login component */}
@@ -12,15 +25,29 @@ const UserLogin = () => {
             <img src="./img/react-redux.jpeg" alt="react-redux-logos" />
           </div>
           <div className="user-login-users">
-            <select name="users" id="users" className="btn">
-              <option value="Select User" disabled>
-                Select User
-              </option>
-              <option value="Ali Maher">Ali Maher</option>
-              <option value="Amr Ahmed">Amr Ahmed</option>
-              <option value="Hussein Taiseer">Hussein Taiseer</option>
+            <select
+              name="users"
+              id="users"
+              className="btn"
+              onChange={(e) => handleChange(e)}>
+              <option value="">Select User</option>
+
+              {Object.values(users).length > 0 &&
+                Object.values(users).map((user) => {
+                  return (
+                    <option key={user.id} value={user.id}>
+                      {user.name}
+                    </option>
+                  );
+                })}
             </select>
-            <button className="btn">Sign In</button>
+            <button
+              className="btn"
+              onClick={() => {
+                dispatch(setAuthedUser(user));
+              }}>
+              Sign In
+            </button>
           </div>
         </div>
       </div>

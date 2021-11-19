@@ -1,7 +1,17 @@
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { AvatarThree } from "../assets";
+import avatars from "../assets/avatars";
+import { setAuthedUser } from "../redux/actions/authedUser";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+  const authedUserID = useSelector((state) => state.authedUser.id);
+  const user =
+    authedUserID !== "" &&
+    Object.values(users).filter((user) => user.id === authedUserID)[0];
+
   return (
     <header>
       <nav>
@@ -18,13 +28,22 @@ const Header = () => {
             </Link>
           </div>
           <div className="navbar-user-logout">
-            <div className="navbar-user">
-              <li>Hello, Ali Maher</li>
-              <AvatarThree width="24" height="26" />
-            </div>
-            <Link to="/login" className="link">
-              <li>Logout</li>
-            </Link>
+            {authedUserID !== "" && (
+              <>
+                <div className="navbar-user">
+                  <li>Hello, {user.name}</li>
+                  {avatars[user.avatarURL]}
+                </div>
+                <Link
+                  to="/login"
+                  className="link"
+                  onClick={() => {
+                    dispatch(setAuthedUser(""));
+                  }}>
+                  <li>Logout</li>
+                </Link>
+              </>
+            )}
           </div>
         </ul>
       </nav>
