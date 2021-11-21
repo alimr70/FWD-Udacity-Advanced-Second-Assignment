@@ -20,7 +20,7 @@ const QuestionCard = ({ question }) => {
           <div className="question-card-question">
             <h3>Would you rather</h3>
             <p>{optionOne.text}</p>
-            <Link to={`/${id}`} className="btn">
+            <Link to={`/questions/${id}`} className="btn">
               View Poll
             </Link>
           </div>

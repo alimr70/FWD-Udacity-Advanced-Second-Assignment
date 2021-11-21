@@ -42,11 +42,15 @@ const QuestionList = () => {
 
 const GetAnsweredQuestions = ({ questions }) => {
   const authedUserID = useSelector((state) => state.authedUser.id);
-  const answeredQuestions = Object.values(questions).filter(
-    (question) =>
-      question.optionOne.votes.includes(authedUserID) ||
-      question.optionTwo.votes.includes(authedUserID)
-  );
+  const answeredQuestions = Object.values(questions)
+    .filter(
+      (question) =>
+        question.optionOne.votes.includes(authedUserID) ||
+        question.optionTwo.votes.includes(authedUserID)
+    )
+    .sort((a, b) => {
+      return a.timestamp > b.timestamp ? -1 : 1;
+    });
   return (
     <>
       {answeredQuestions.map((question) => (
@@ -58,11 +62,15 @@ const GetAnsweredQuestions = ({ questions }) => {
 
 const GetUnansweredQuestions = ({ questions }) => {
   const authedUserID = useSelector((state) => state.authedUser.id);
-  const answeredQuestions = Object.values(questions).filter(
-    (question) =>
-      !question.optionOne.votes.includes(authedUserID) &&
-      !question.optionTwo.votes.includes(authedUserID)
-  );
+  const answeredQuestions = Object.values(questions)
+    .filter(
+      (question) =>
+        !question.optionOne.votes.includes(authedUserID) &&
+        !question.optionTwo.votes.includes(authedUserID)
+    )
+    .sort((a, b) => {
+      return a.timestamp > b.timestamp ? -1 : 1;
+    });
   return (
     <>
       {answeredQuestions.map((question) => (
