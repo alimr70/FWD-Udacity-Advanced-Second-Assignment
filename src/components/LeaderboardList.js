@@ -4,7 +4,7 @@ import LeaderboardCard from "./LeaderboardCard";
 const LeaderboardList = () => {
   const users = useSelector((state) => state.users);
   const ranks = getRanksArr(users);
-  const arrangedRanks = ranks.sort((a, b) => (a.score < b.score ? 1 : 0));
+  const arrangedRanks = ranks.sort((a, b) => (a.score < b.score ? 1 : -1));
   return (
     <>
       {arrangedRanks.map((user, index) => {
